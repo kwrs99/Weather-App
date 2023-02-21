@@ -42,6 +42,12 @@ a {
   color: cornflowerblue;
 }
 
+footer {
+  font-size: 15px;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+}
+
 .col-md-2 {
   display: block;
   text-align: center;
