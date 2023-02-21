@@ -57,6 +57,8 @@ search.addEventListener("submit", citySearch);
 function weather(response) {
   let temp = Math.round(response.data.main.temp);
   let h2 = document.querySelector("h2");
+
+  let h1 = document.querySelector("h1");
   h2.innerHTML = `${temp}°C`;
   h1.innerHTML = `${response.data.name}`;
 
@@ -80,7 +82,7 @@ function weather(response) {
 }
 
 //current location
-function location(position) {
+function searchLocation(position) {
   let apiKey = "53f3bc1f5d348c44be3e3754c7185573";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -88,13 +90,9 @@ function location(position) {
   axios.get(url).then(weather);
 }
 
-navigator.geolocation.getCurrentPosition(location);
-
-let h1 = document.querySelector("h1");
-
 function getLocation(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(location);
+  navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
 let currentLocation = document.querySelector("#current-location");
