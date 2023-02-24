@@ -42,11 +42,12 @@ dateTime.innerHTML = `${day} ${hours}:${minutes}`;
 
 //displaying weather and city name
 function displayWeather(response) {
-  let temp = Math.round(response.data.main.temp);
-  let h2 = document.querySelector("h2");
+  tempCelsius = response.data.main.temp;
+  let temp = Math.round(tempCelsius);
+  let h2 = document.querySelector("#current-temp");
 
   let h1 = document.querySelector("h1");
-  h2.innerHTML = `${temp}°C`;
+  h2.innerHTML = `${temp} `;
   h1.innerHTML = response.data.name;
 
   let description = response.data.weather[0].description;
@@ -57,7 +58,7 @@ function displayWeather(response) {
   let tempHilo = document.querySelector("#high-low");
   let tempHi = Math.round(response.data.main.temp_max);
   let tempLo = Math.round(response.data.main.temp_min);
-  tempHilo.innerHTML = `Hi: ${tempHi}° | Lo: ${tempLo}°`;
+  tempHilo.innerHTML = `H: ${tempHi}° | L: ${tempLo}°`;
 
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.main.humidity;
@@ -102,7 +103,34 @@ function handleSubmit(event) {
   search(cityInput.value);
 }
 
-search("Dublin");
+tempCelsius = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+//temperature conversion
+
+function temperatureFahrenheit(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let tempFahrenheit = Math.round((tempCelsius * 9) / 5 + 32);
+  let h2 = document.querySelector("#current-temp");
+  h2.innerHTML = tempFahrenheit;
+}
+
+function temperatureCelsius(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let h2 = document.querySelector("#current-temp");
+  h2.innerHTML = Math.round(tempCelsius);
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", temperatureFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", temperatureCelsius);
+
+search("Dublin");

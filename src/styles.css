@@ -89,7 +89,7 @@ img {
 .search {
   display: inline;
   width: 70%;
-  margin-left: 130px;
+  margin-left: 100px;
   height: 40px;
   border-radius: 20px;
   border-width: 2px;
@@ -161,4 +161,13 @@ img {
 #currently {
   font: size 50px;
   text-decoration: underline;
+}
+
+.active {
+  color: black;
+  text-decoration: none;
+}
+
+.active:hover {
+  cursor: default;
 }
