@@ -40,27 +40,14 @@ if (minutes < 10) {
 }
 dateTime.innerHTML = `${day} ${hours}:${minutes}`;
 
-//city search
-
-function citySearch(event) {
-  event.preventDefault();
-  let cityNew = document.querySelector("#search-input").value;
-  let apiKey = "53f3bc1f5d348c44be3e3754c7185573";
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityNew}&appid=${apiKey}&units=metric`;
-  axios.get(url).then(weather);
-}
-
-let search = document.querySelector("#search-form");
-search.addEventListener("submit", citySearch);
-
-//current location temp. and name
-function weather(response) {
+//displaying weather and city name
+function displayWeather(response) {
   let temp = Math.round(response.data.main.temp);
   let h2 = document.querySelector("h2");
 
   let h1 = document.querySelector("h1");
   h2.innerHTML = `${temp}°C`;
-  h1.innerHTML = `${response.data.name}`;
+  h1.innerHTML = response.data.name;
 
   let description = response.data.weather[0].description;
   let descriptionCap = description[0].toUpperCase() + description.substring(1);
@@ -72,22 +59,26 @@ function weather(response) {
   let tempLo = Math.round(response.data.main.temp_min);
   tempHilo.innerHTML = `H:${tempHi}° | L:${tempLo}°`;
 
-  let humid = Math.round(response.data.main.humidity);
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = `Humidity: ${humid} %`;
+  humidity.innerHTML = response.data.main.humidity;
 
-  let windSpeed = Math.round(response.data.wind.speed);
+  let windSpeed = Math.round(response.data.wind.speed * 3.6);
   let wind = document.querySelector("#wind");
-  wind.innerHTML = `Wind: ${windSpeed} km/h`;
+  wind.innerHTML = windSpeed;
+
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  icon.setAttribute("alt", response.data.weather[0].description);
 }
 
-//current location
+//weather in current location
 function searchLocation(position) {
   let apiKey = "53f3bc1f5d348c44be3e3754c7185573";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(url).then(weather);
+  let locationUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(locationUrl).then(displayWeather);
 }
 
 function getLocation(event) {
@@ -97,3 +88,21 @@ function getLocation(event) {
 
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getLocation);
+
+//search for city weather
+function search(city) {
+  let apiKey = "53f3bc1f5d348c44be3e3754c7185573";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeather);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#search-input");
+  search(cityInput.value);
+}
+
+search("Dublin");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
