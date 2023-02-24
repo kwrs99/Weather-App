@@ -57,7 +57,7 @@ function displayWeather(response) {
   let tempHilo = document.querySelector("#high-low");
   let tempHi = Math.round(response.data.main.temp_max);
   let tempLo = Math.round(response.data.main.temp_min);
-  tempHilo.innerHTML = `H:${tempHi}° | L:${tempLo}°`;
+  tempHilo.innerHTML = `Hi: ${tempHi}° | Lo: ${tempLo}°`;
 
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.main.humidity;

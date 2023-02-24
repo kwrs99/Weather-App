@@ -143,3 +143,22 @@ img {
 #description {
   text-transform: capitalize;
 }
+
+#city-name {
+  margin-bottom: 0;
+  margin-top: 80px;
+}
+#hi-lo {
+  margin-bottom: 0;
+  padding: 0;
+  margin-top: -40px;
+}
+
+#percipitation {
+  margin-top: 20px;
+}
+
+#currently {
+  font: size 50px;
+  text-decoration: underline;
+}
