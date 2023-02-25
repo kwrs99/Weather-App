@@ -34,26 +34,25 @@
       </form>
       <div class="row">
         <div class="col-6">
-          <h1 id="city-name"></h1>
           <img id="icon" />
+          <h3 id="description"></h3>
           <h1 id="high-low">°</h1>
         </div>
         <div class="col">
           <ul>
             <li>
-              <h3><strong id="currently">Currently:</strong></h3>
+              <h1 id="city-name"></h1>
             </li>
             <li id="date-time"><h3></h3></li>
             <li>
               <div>
                 <h2>
                   <em id="current-temp"> </em
-                  ><a href="#" class="active" id="celsius">°C</a><a> | </a
+                  ><a href="#" class="active" id="celsius"> °C</a><a> | </a
                   ><a href="#" id="fahrenheit">°F</a>
                 </h2>
               </div>
             </li>
-            <h3 id="description"></h3>
           </ul>
         </div>
 
@@ -77,53 +76,7 @@
       </div>
 
       <hr />
-      <div class="row">
-        <div class="col-md-2">
-          <h4>Tomorrow</h4>
-          <img
-            src="images/rain-clouds.png"
-            alt="rain clouds"
-            class="rain"
-            width="100px"
-          />
-          <p>29° | 19°</p>
-        </div>
-        <div class="col-md-2">
-          <h4>Thursday</h4>
-          <img
-            src="images/rain-clouds.png"
-            alt="rain clouds"
-            class="rain"
-            width="100px"
-          />
-          <p>28° | 18°</p>
-        </div>
-        <div class="col-md-2">
-          <h4>Friday</h4>
-          <img
-            src="images/rain-clouds.png"
-            alt="rain clouds"
-            class="rain"
-            width="100px"
-          />
-          <p>28° | 18°</p>
-        </div>
-        <div class="col-md-2">
-          <h4>Saturday</h4>
-          <img
-            src="images/rain-clouds.png"
-            alt="rain clouds"
-            class="rain"
-            width="100px"
-          />
-          <p>26° | 17°</p>
-        </div>
-        <div class="col-md-2">
-          <h4>Sunday</h4>
-          <img src="images/sun.png" alt="sun" class="sun" width="100px" />
-          <p>28° | 18°</p>
-        </div>
-      </div>
+      <div class="weather-forecast" id="forecast"></div>
     </div>
     <br />
     <footer>

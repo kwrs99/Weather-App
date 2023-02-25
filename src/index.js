@@ -40,13 +40,40 @@ if (minutes < 10) {
 }
 dateTime.innerHTML = `${day} ${hours}:${minutes}`;
 
+//show forecast
+function displayForecast() {
+  let forecastElement = documet.querySelector("#forecast");
+  let days = ["Sun", "Mon", "Tue", "Wed"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-md-2">
+            <h4>${day}</h4>
+            <img
+              src="images/rain-clouds.png"
+              alt="rain clouds"
+              class="rain"
+              width="20px"
+            />
+            <p>
+              <span class="forecast-temp-hi">29</span>° |
+              <span class="forecast-temp-lo">19</span>°
+            </p>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 //displaying weather and city name
 function displayWeather(response) {
   tempCelsius = response.data.main.temp;
   let temp = Math.round(tempCelsius);
   let h2 = document.querySelector("#current-temp");
 
-  let h1 = document.querySelector("h1");
+  let h1 = document.querySelector("#city-name");
   h2.innerHTML = `${temp} `;
   h1.innerHTML = response.data.name;
 
@@ -134,3 +161,4 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", temperatureCelsius);
 
 search("Dublin");
+displayForecast();
