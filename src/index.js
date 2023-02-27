@@ -1,4 +1,4 @@
-//current date and time
+//format the current date and time
 let date = new Date();
 function formatDate(now) {
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -40,31 +40,54 @@ if (minutes < 10) {
 }
 dateTime.innerHTML = `${day} ${hours}:${minutes}`;
 
+//format the day of the forecast
+function formatForecast(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 //show forecast
-function displayForecast() {
-  let forecastElement = documet.querySelector("#forecast");
-  let days = ["Sun", "Mon", "Tue", "Wed"];
+function displayForecast(response) {
+  let forecastData = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-md-2">
-            <h4>${day}</h4>
+  forecastData.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-md-2">
+            <h4>${formatForecast(forecastDay.dt)}</h4>
             <img
-              src="images/rain-clouds.png"
-              alt="rain clouds"
-              class="rain"
-              width="20px"
+              src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png"
+              alt=""
+              width="60px"
             />
-            <p>
-              <span class="forecast-temp-hi">29</span>° |
-              <span class="forecast-temp-lo">19</span>°
-            </p>
+            <div>
+              <span class="forecast-temp-hi">${Math.round(
+                forecastDay.temp.max
+              )}</span>° | 
+              <span class="forecast-temp-lo">${Math.round(
+                forecastDay.temp.min
+              )}</span>°
+            </div>
           </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "53f3bc1f5d348c44be3e3754c7185573";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 //displaying weather and city name
@@ -100,6 +123,8 @@ function displayWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   icon.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 //weather in current location
@@ -161,4 +186,3 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", temperatureCelsius);
 
 search("Dublin");
-displayForecast();
