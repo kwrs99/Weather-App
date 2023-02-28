@@ -29,30 +29,30 @@
           placeholder="Search city"
           class="search"
           id="search-input"
+          autocomplete="off"
         /><button id="search-button">Search</button>
         <button id="current-location">📍</button>
       </form>
       <div class="row">
         <div class="col-6">
+          <h1 id="city-name"></h1>
+          <h3 id="date-time"></h3>
           <img id="icon" />
-          <h3 id="description"></h3>
+
           <h1 id="high-low">°</h1>
         </div>
         <div class="col">
           <ul>
             <li>
-              <h1 id="city-name"></h1>
-            </li>
-            <li id="date-time"><h3></h3></li>
-            <li>
-              <div>
-                <h2>
-                  <em id="current-temp"> </em
-                  ><a href="#" class="active" id="celsius"> °C</a><a> | </a
+              <h2>
+                <em id="current-temp"> </em>
+                <span>
+                  <a href="#" class="active" id="celsius"> °C</a><a> | </a
                   ><a href="#" id="fahrenheit">°F</a>
-                </h2>
-              </div>
+                </span>
+              </h2>
             </li>
+            <li><h3 id="description"></h3></li>
           </ul>
         </div>
 
@@ -62,11 +62,9 @@
               <br />
               <br />
               <li>
-                <h3>Precipitation: <span id="precipitation"></span>%</h3>
-              </li>
-              <li>
                 <h3>Humidity: <span id="humidity"></span>%</h3>
               </li>
+
               <li>
                 <h3>Wind: <span id="wind"></span> km/h</h3>
               </li>

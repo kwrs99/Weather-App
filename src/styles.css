@@ -12,12 +12,14 @@ h1 {
   font-size: 45px;
 }
 h2 {
-  font-size: 40px;
+  font-size: 50px;
+  margin-top: 130px;
 }
 h3 {
   line-height: 1.5;
   font-weight: 100;
-  font-size: 25px;
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
 ul {
@@ -29,7 +31,7 @@ p {
   font-size: 18px;
 }
 body {
-  background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  background: linear-gradient(to top, #f9dccf 0%, #89d8fc 100%);
   height: 100vh;
 }
 
@@ -64,10 +66,12 @@ img {
 .container {
   padding: 30px;
   padding-right: calc(var(--bs-gutter-x) * 0.9);
-  margin-top: 20px;
-  background-color: rgba(211, 211, 211, 0.397);
-  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  margin-top: 60px;
+  background-color: rgba(209, 202, 202, 0.095);
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.404);
   border-radius: 20px;
+  width: 80%;
 }
 
 #search-button {
@@ -96,7 +100,7 @@ img {
   display: inline;
   width: 70%;
   margin-left: 100px;
-  height: 40px;
+  height: 45px;
   border-radius: 20px;
   border-width: 2px;
   border: solid rgba(100, 148, 237, 0.6);
@@ -105,21 +109,23 @@ img {
 }
 #search-button:hover {
   cursor: pointer;
-  color: white;
-  background-color: rgba(100, 148, 237, 0.175);
+  color: rgba(100, 148, 237, 0.6);
+  background-color: white;
   border: 1px solid rgba(100, 148, 237, 0.6);
-  font-weight: 200;
+  font-size: 16px;
+  transition: ms;
+}
+
+.temp {
+  padding-top: 5px;
+  line-height: 1.5;
 }
 .vertical {
   border-left: thin solid rgba(0, 0, 0, 0.3);
   padding-top: 0;
   margin-top: 100px;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 }
-.temp {
-  padding-top: 0;
-}
-
 #date-time {
   text-align: center;
   font-family: exo;
@@ -127,47 +133,43 @@ img {
   font-weight: 100;
   font-size: 20px;
   padding: 10px;
+  margin: 3px;
+  padding-bottom: 0;
 }
 
 #high-low {
-  font-size: 33px;
+  font-size: 23px;
   padding-top: 10px;
   line-height: 1.2;
   margin-bottom: 0.7rem;
+  font-weight: 200;
 }
 
 #current-location {
   display: inline;
-  width: 3%;
+  width: 40px;
   padding: 5px;
   margin-left: 10px;
-  border-radius: 30px;
+  border-radius: 50px;
   border-width: 2px;
   border: solid rgba(100, 148, 237, 0.6);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  height: 40px;
 }
 
 #description {
   text-transform: capitalize;
+  font-size: 25px;
 }
 
 #city-name {
   margin-bottom: 0;
-  margin-top: 80px;
+  margin-top: 0px;
 }
 #hi-lo {
   margin-bottom: 0;
   padding: 0;
   margin-top: -40px;
-}
-
-#percipitation {
-  margin-top: 20px;
-}
-
-#currently {
-  font: size 50px;
-  text-decoration: underline;
 }
 
 .active {
@@ -177,4 +179,18 @@ img {
 
 .active:hover {
   cursor: default;
+}
+
+#forecast-description {
+  text-transform: capitalize;
+  text-align: center;
+  font-family: exo;
+  color: rgba(128, 128, 128, 0.9);
+}
+
+.forecast-temp-hi,
+.forecast-temp-lo {
+  text-transform: capitalize;
+  text-align: center;
+  font-family: exo;
 }
