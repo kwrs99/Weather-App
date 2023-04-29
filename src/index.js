@@ -196,4 +196,4 @@ fahrenheitLink.addEventListener("click", temperatureFahrenheit);
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", temperatureCelsius);
 
-search("Dublin");
+search("Gaborone");
