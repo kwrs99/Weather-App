@@ -68,7 +68,7 @@ img {
   padding-right: calc(var(--bs-gutter-x) * 0.9);
   margin: 0 auto;
   margin-top: 60px;
-  background-color: rgba(209, 202, 202, 0.095);
+  background-color: rgba(209, 202, 202, 0.167);
   box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.404);
   border-radius: 20px;
   width: 80%;
